@@ -27,3 +27,13 @@ export const postCountryPreference = async (dealer_id: string, countries: string
 export const getPreferencesById = async (id:any) => {
   return axios.get(`${API_URL}/preferences?dealer_id=${id}`);
 };
+
+export const postSubscription = async (subscriptionData: { dealer_id: string; plan_price: number; expires_at: string }) => {
+  try {
+    const response = await axios.post(`${API_URL}/subscribe`, subscriptionData);
+    return response.data;
+  } catch (error) {
+    console.error("Error subscribing:", error);
+    throw error;
+  }
+};
