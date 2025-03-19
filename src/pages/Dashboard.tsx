@@ -78,7 +78,7 @@ const Dashboard = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
-    if (country.length > 1) {
+    if (country.length > 2) {
       fetchCountries();
     } else {
       setCountryResults([]);
