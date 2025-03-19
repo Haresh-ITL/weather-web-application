@@ -4,6 +4,7 @@ import { login } from "../services/authService";
 import { getPreferencesById } from "../services/weatherService";
 import { TextField, Button, Container, Typography, Card, CardContent, Box, Grid } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -21,9 +22,16 @@ const Login = () => {
       localStorage.setItem("token", res.token);
       const preferences = await getPreferencesById(res.dealer.id);
       sessionStorage.setItem("userData", JSON.stringify(res.dealer));
-      const countryString = preferences?.data?.countries || '';
+      if (preferences.data.expired) {
+        return Swal.fire({
+          icon: "error",
+          title: "Subscription Expired",
+          text: "Subscription has been Expired",
+          confirmButtonText: "OK",
+        });
+      }
+      const countryString = preferences?.data?.dataValues?.countries || '';
       let countryArray: string[] = [];
-
       if (countryString) {
         const cleanedString = countryString.replace(/[{}"]/g, '');
         countryArray = cleanedString.split(',').map((country: string) => country.trim());
