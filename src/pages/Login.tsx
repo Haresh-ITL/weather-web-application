@@ -71,10 +71,7 @@ const Login = () => {
               <Typography variant="h4" align="center" gutterBottom>
                 Login
               </Typography>
-
-              {/* Error Handling */}
               {error && <Typography color="error">{error}</Typography>}
-
               <form onSubmit={handleSubmit}>
                 <TextField label="Email" name="email" fullWidth margin="normal" onChange={handleChange} />
                 <TextField label="Password" name="password" type="password" fullWidth margin="normal" onChange={handleChange} />
