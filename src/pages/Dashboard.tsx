@@ -182,11 +182,11 @@ const Dashboard = () => {
               {preferences.length > 0 && (
                 <Grid item xs={12} style={{ marginTop: "20px" }}>
                   <FormControl fullWidth>
-                    <InputLabel>Preferred Country</InputLabel>
+                    <InputLabel>Favorite Countries</InputLabel>
                     <Select
                       value={country}
                       onChange={(e) => setCountry(e.target.value)}
-                      label="Preferred Country"
+                      label="Favorite Countries"
                     >
                       {preferences.map((pref: any, index: any) => (
                         <MenuItem key={index} value={pref}>
