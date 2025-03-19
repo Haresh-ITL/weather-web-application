@@ -161,9 +161,12 @@ const Dashboard = () => {
   };
 
   return (
-    <Box display="flex" width="100vw" height="90vh" sx={{ px: 4 }}>
+    <Box display="flex" width="100vw" height="100vh" sx={{ 
+      px: 4,
+      background: "linear-gradient(135deg, #f5f7fa, #c3cfe2)"
+    }}>
       <Box width="50%" paddingRight={2}>
-        <Container className="dashboard-container" style={{ width: "100%" }}>
+        <Container className="dashboard-container" style={{ width: "100%",paddingTop:"6rem" }}>
           <Paper elevation={6} style={{ padding: "20px", borderRadius: "10px" }}>
             <Typography variant="h4" gutterBottom align="center" color="primary">
               Country Dashboard
