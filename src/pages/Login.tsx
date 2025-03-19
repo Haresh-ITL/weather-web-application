@@ -18,9 +18,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await login(credentials);
-      localStorage.setItem("token", res.data.token);
-      const preferences = await getPreferencesById(res.data.dealer.id);
-      sessionStorage.setItem("userData", JSON.stringify(res.data.dealer));
+      localStorage.setItem("token", res.token);
+      const preferences = await getPreferencesById(res.dealer.id);
+      sessionStorage.setItem("userData", JSON.stringify(res.dealer));
       const countryString = preferences?.data?.countries || '';
       let countryArray: string[] = [];
 

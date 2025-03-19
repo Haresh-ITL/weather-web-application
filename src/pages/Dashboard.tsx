@@ -100,7 +100,6 @@ const Dashboard = () => {
   const fetchCountries = async () => {
     try {
       const res = await getCountries(country);
-
       setCountryResults(res.data);
     } catch (error) {
       console.error("Failed to fetch countries:", error);

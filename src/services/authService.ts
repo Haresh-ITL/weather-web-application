@@ -1,13 +1,17 @@
-// src/services/authService.ts
-import axios from "axios";
-
-const API_URL = "http://localhost:3001/auth";
+import { authClient } from "./apiClient";
 
 export const register = async (userData: { name: string; email: string; password: string }) => {
-  
-  return axios.post(`${API_URL}/register`, userData);
+  return authClient.post("/register", userData);
 };
 
-export const login = async (credentials:any) => {
-  return axios.post(`${API_URL}/login`, credentials);
+export const login = async (credentials: { email: string; password: string }) => {
+  const response = await authClient.post("/login", credentials);
+  const { token } = response.data;
+  localStorage.setItem("token", token);
+  return response.data;
+};
+
+export const logout = () => {
+  localStorage.removeItem("token");
+  window.location.href = "/";
 };

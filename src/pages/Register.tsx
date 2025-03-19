@@ -20,8 +20,6 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await register(user);
-      console.log("ress",response);
-      
       if(response){
         const planPrice = user.subscription === "monthly" ? 2 : 20;
         const expiresAt = new Date();

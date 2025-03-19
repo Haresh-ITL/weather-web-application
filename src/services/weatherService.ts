@@ -1,19 +1,16 @@
-// src/services/weatherService.ts
-import axios from "axios";
+import { weatherClient } from "./apiClient";
 
-const API_URL = "http://localhost:3002/weather";
-
-export const getCountries = async (country:any) => {
-  return axios.get(`https://restcountries.com/v3.1/name/${country}`);
+export const getCountries = async (country: string) => {
+  return weatherClient.get(`https://restcountries.com/v3.1/name/${country}`);
 };
 
 export const getWeather = async (lat: string, lon: string) => {
-  return axios.get(`${API_URL}/current?lat=${lat}&lon=${lon}`);
+  return weatherClient.get(`/current?lat=${lat}&lon=${lon}`);
 };
 
 export const postCountryPreference = async (dealer_id: string, countries: string[]) => {
   try {
-    const response = await axios.post(`${API_URL}/set-preference`, {
+    const response = await weatherClient.post(`/set-preference`, {
       dealer_id,
       countries,
     });
@@ -24,13 +21,13 @@ export const postCountryPreference = async (dealer_id: string, countries: string
   }
 };
 
-export const getPreferencesById = async (id:any) => {
-  return axios.get(`${API_URL}/preferences?dealer_id=${id}`);
+export const getPreferencesById = async (id: string) => {
+  return weatherClient.get(`/preferences?dealer_id=${id}`);
 };
 
 export const postSubscription = async (subscriptionData: { dealer_id: string; plan_price: number; expires_at: string }) => {
   try {
-    const response = await axios.post(`${API_URL}/subscribe`, subscriptionData);
+    const response = await weatherClient.post(`/subscribe`, subscriptionData);
     return response.data;
   } catch (error) {
     console.error("Error subscribing:", error);
