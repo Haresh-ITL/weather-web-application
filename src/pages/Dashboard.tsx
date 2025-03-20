@@ -3,6 +3,7 @@ import { Star, StarBorder } from "@mui/icons-material";
 import { getCountries } from "../services/weatherService";
 import { getWeather } from "../services/weatherService";
 import { postCountryPreference } from "../services/weatherService";
+import LogoutIcon from "@mui/icons-material/Logout";
 import {
   TextField,
   Container,
@@ -17,6 +18,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  IconButton,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
@@ -106,6 +108,11 @@ const Dashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
   const handleCardClick = async (lat: any, lon: any, countryName: string) => {
     try {
       let res = await getWeather(lat, lon) as any;
@@ -168,9 +175,14 @@ const Dashboard = () => {
       <Box width="50%" paddingRight={2}>
         <Container className="dashboard-container" style={{ width: "100%",paddingTop:"6rem" }}>
           <Paper elevation={6} style={{ padding: "20px", borderRadius: "10px" }}>
-            <Typography variant="h4" gutterBottom align="center" color="primary">
-              Country Dashboard
-            </Typography>
+            <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" sx={{ padding: "1rem" }}>
+              <Typography variant="h4" color="primary" sx={{ paddingLeft: "6rem" }}>
+                Country Dashboard
+              </Typography>
+              <IconButton color="primary" onClick={handleLogout}>
+                <LogoutIcon />
+              </IconButton>
+            </Box>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12}>
                 <TextField
