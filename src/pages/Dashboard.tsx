@@ -152,7 +152,6 @@ const Dashboard = () => {
     setFavorites((prevFavorites) => {
       let newFavorites: string[];
       if (prevFavorites.includes(cca2)) {
-        // Remove the country code from the favorites
         newFavorites = prevFavorites.filter((id) => id !== cca2);
       } else {
         newFavorites = [...prevFavorites, cca2];
